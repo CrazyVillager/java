@@ -1,0 +1,28 @@
+# CI: main への push と、すべての Pull Request でビルド＋テストを実行する。
+# 下の jobs 直下の「build」がジョブ名であり、ブランチ保護の
+# 「Require status checks to pass」で指定する名前もこの「build」になる。
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリのコードをCI環境に取得する
+      - uses: actions/checkout@v4
+
+      # Java 21 (Temurin) をセットアップする（SPEC 11章と揃える）
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      # Gradleのキャッシュを有効化してビルドを高速化する
+      - uses: gradle/actions/setup-gradle@v4
+
+      # コンパイル＋全テストを実行する。1つでも失敗するとこのジョブは赤になる
+      - run: ./gradlew build
