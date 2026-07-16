@@ -1,5 +1,7 @@
 # マルチスレッドチャットツール
 
+[![CI](https://github.com/CrazyVillager/java/actions/workflows/ci.yml/badge.svg)](https://github.com/CrazyVillager/java/actions/workflows/ci.yml)
+
 TCPソケット上で動作するマルチスレッドチャットツールである。3名のチームによるJava学習を目的とする。仕様は [SPEC.md](SPEC.md)、開発フロー（ブランチ運用・PR手順）は [CONTRIBUTING.md](CONTRIBUTING.md) を参照すること。
 
 ## 必要環境
